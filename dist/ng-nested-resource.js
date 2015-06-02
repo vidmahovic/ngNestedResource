@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ngNestedResource', []);
+angular.module('ngNestedResource', [
+    'ngResource'
+]);
 angular.module('ngNestedResource')
     .factory('BaseCollection', function() {
         var BaseCollection = function (model, perPage, pageNumber) {
