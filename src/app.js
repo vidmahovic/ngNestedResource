@@ -1,3 +1,5 @@
 'use strict';
 
-angular.module('ngNestedResource', []);
+angular.module('ngNestedResource', [
+    'ngResource'
+]);
