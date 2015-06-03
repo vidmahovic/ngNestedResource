@@ -46,7 +46,7 @@ There are two main factories that can be used for making your model and collecti
 
 - wrap around ngResource
 - deals with nesting
-- provide api for basic usage:
+- provides api for basic usage:
  - get
  - list
  - count
@@ -138,7 +138,7 @@ var users = UserModel.list({age: 50});
 
 ### BaseCollection
 
-- uses BaseModel
+- uses models created with BaseModel
 - extends Array object (uses Array object prototype)
 - implements infinitive load
 - implements pagination
