@@ -159,7 +159,7 @@ angular.module('ngNestedResource')
     });
 
 angular.module('ngNestedResource')
-    .factory('BaseModel', function($resource, $injector, $http) {
+    .factory('BaseModel', ["$resource", "$injector", "$http", function($resource, $injector, $http) {
         return function (url, urlMap, subModels, resourceMethods) {
             resourceMethods = resourceMethods || {};
             var resource = $resource(
@@ -269,4 +269,4 @@ angular.module('ngNestedResource')
 
             return Model;
         };
-    });
+    }]);
