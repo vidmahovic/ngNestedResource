@@ -11,6 +11,17 @@ angular.module('ngNestedResource')
         };
         BaseCollection.prototype = new Array();
 
+        BaseCollection.prototype.populate = function (data) {
+            var collection = this;
+            collection.clear();
+
+            data.forEach(function(obj) {
+                collection.push(new collection.model(obj));
+            });
+
+            return collection;
+        };
+
         BaseCollection.prototype.loadMore = function (take, success, error) {
             if (this.allLoaded()) {
                 // no need to generate another request in this  case
