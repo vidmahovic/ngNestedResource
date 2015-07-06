@@ -159,6 +159,7 @@ angular.module('ngNestedResource')
                 return new BaseCollection(model, perPage, pageNumber);
             };
             Collection.prototype = BaseCollection.prototype;
+            Collection.model = model;
 
             return Collection;
         };

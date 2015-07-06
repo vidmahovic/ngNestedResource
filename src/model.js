@@ -22,9 +22,13 @@ angular.module('ngNestedResource')
                         var subModel = $injector.get(mdClass);
 
                         if (angular.isArray(instance[field])) {
-                            angular.forEach(instance[field], function (item, key) {
-                                instance[field][key] = new subModel(item);
-                            });
+                            if (typeof subModel.model !== 'undefined') {
+                                instance[field] = (new subModel()).populate(instance[field]);
+                            } else {
+                                angular.forEach(instance[field], function (item, key) {
+                                  instance[field][key] = new subModel(item);
+                                });
+                            }
                         } else {
                             instance[field] = new subModel(instance[field]);
                         }
