@@ -88,6 +88,8 @@ angular.module('ngNestedResource')
             while(this.length > 0) {
                 this.pop();
             }
+
+            this.endReached = false;
         };
 
         BaseCollection.prototype.allLoaded = function () {
