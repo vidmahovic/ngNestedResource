@@ -90,6 +90,7 @@ angular.module('ngNestedResource')
             }
 
             this.endReached = false;
+            this.queryParams.skip = 0;
         };
 
         BaseCollection.prototype.allLoaded = function () {
