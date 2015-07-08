@@ -8,6 +8,7 @@ angular.module('ngNestedResource')
             this.totalItems;
             this.totalPages;
             this.pages = [];
+            this.endReached = false;
         };
         BaseCollection.prototype = new Array();
 
@@ -34,6 +35,10 @@ angular.module('ngNestedResource')
             this.queryParams.skip = this.length;
 
             return this.model.list(this.queryParams, success, error).then(function (results) {
+                if (results.length < collection.queryParams.take) {
+                    collection.endReached = true;
+                }
+
                 angular.forEach(results, function (item) {
                     collection.push(item);
                 });
@@ -50,7 +55,7 @@ angular.module('ngNestedResource')
                 collection.queryParams.take = collection.perPage;
             }
 
-            return this.model.list(params, success, error).then(function (results) {
+            return this.model.list(collection.queryParams, success, error).then(function (results) {
                 collection.clear();
                 angular.forEach(results, function (item) {
                     collection.push(item);
@@ -64,7 +69,7 @@ angular.module('ngNestedResource')
             var collection = this;
             angular.extend(collection.queryParams, params);
 
-            return this.model.list(params, success, error).then(function (results) {
+            return this.model.list(collection.queryParams, success, error).then(function (results) {
                 collection.clear();
                 angular.forEach(results, function (item) {
                     collection.push(item);
@@ -81,7 +86,7 @@ angular.module('ngNestedResource')
         };
 
         BaseCollection.prototype.allLoaded = function () {
-            return angular.isUndefined(this.queryParams.take) || this.queryParams.take > this.length;
+            return angular.isUndefined(this.queryParams.take) || this.queryParams.take > this.length || this.endReached;
         };
 
         // pagination methods
