@@ -56,6 +56,7 @@ angular.module('ngNestedResource')
             var collection = this;
             collection.queryParams = params ? params : {};
 
+            collection.queryParams.skip = 0;
             if (!collection.queryParams.take) {
                 collection.queryParams.take = collection.perPage;
             }
@@ -72,6 +73,7 @@ angular.module('ngNestedResource')
 
         BaseCollection.prototype.filter = function (params, success, error) {
             var collection = this;
+            collection.queryParams.skip = 0;
             angular.extend(collection.queryParams, params);
 
             return this.model.list(collection.queryParams, success, error).then(function (results) {
@@ -90,7 +92,6 @@ angular.module('ngNestedResource')
             }
 
             this.endReached = false;
-            this.queryParams.skip = 0;
         };
 
         BaseCollection.prototype.allLoaded = function () {
