@@ -73,7 +73,12 @@ angular.module('ngNestedResource')
 
         BaseCollection.prototype.filter = function (params, success, error) {
             var collection = this;
+
             collection.queryParams.skip = 0;
+            if (!collection.queryParams.take) {
+              collection.queryParams.take = collection.perPage;
+            }
+            
             angular.extend(collection.queryParams, params);
 
             return this.model.list(collection.queryParams, success, error).then(function (results) {
