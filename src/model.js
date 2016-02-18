@@ -109,6 +109,7 @@ angular.module('ngNestedResource')
             };
 
             Model.prototype = resource.prototype;
+            Model.parseSubModels = _parseSubModels;
             Model.resource = resource;
 
             return Model;

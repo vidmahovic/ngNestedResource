@@ -78,7 +78,7 @@ angular.module('ngNestedResource')
             if (!collection.queryParams.take) {
               collection.queryParams.take = collection.perPage;
             }
-            
+
             angular.extend(collection.queryParams, params);
 
             return this.model.list(collection.queryParams, success, error).then(function (results) {
@@ -295,6 +295,7 @@ angular.module('ngNestedResource')
             };
 
             Model.prototype = resource.prototype;
+            Model.parseSubModels = _parseSubModels;
             Model.resource = resource;
 
             return Model;
