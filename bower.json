@@ -5,7 +5,7 @@
   "authors": [
     "Goran Prijic <goran@vivifyideas.com>"
   ],
-  "description": "Wrap around ngResource to allow nested models.",
+  "description": "Wrap around ngResource to allow nested models. ZonApp version.",
   "license": "MIT",
   "ignore": [
     "**/.*",
